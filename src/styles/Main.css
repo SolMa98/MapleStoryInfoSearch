@@ -1,0 +1,89 @@
+body {
+    background-image: url("../assets/image/main/maplestory-background3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    max-width: 1920px;
+    height: 100%;
+    max-height: 1080px;
+}
+
+.main-area {
+    margin-top: 25%;
+    line-height: 50px;
+}
+
+.main-area .main-title span{
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+}
+
+.search-bar-area {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    position: relative;
+    width: 45%;
+    height: max-content;
+    padding: 15px 10px 15px 10px;
+    border: 1px solid;
+    border-radius: 20px;
+    background: #fff;
+}
+
+.search-bar input {
+    font-size: 20px;
+    border: none;
+    display: flex;
+    width: calc(100% - 50px);
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar button {
+    background: transparent url("../assets/image/common/search-icon-black.svg") no-repeat;
+    min-width: 45px;
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+    border: none;
+
+    cursor:pointer;
+}
+
+.search-bar button:hover{
+    background: #A9A9A9 url("../assets/image/common/search-icon-white.svg") no-repeat;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1200px) and (max-height: 660px) {
+    body {
+        background: #000;
+    }
+
+    .main-area {
+        background-image: url("../assets/image/main/maplestory-background3.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        max-height: 1080px;
+        min-height: 1080px;
+        margin-top: 0%;
+    }
+
+    .main-area .main-title{
+        padding-top: 25%;
+    }
+
+    .main-area .main-title span{
+        font-size: 45px;
+        font-weight: bold;
+        color: white;
+    }
+}
