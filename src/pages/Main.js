@@ -1,6 +1,9 @@
 import "../styles/Main.css";
 import apiCall from "../utils/apiUtils";
+import { useNavigate } from 'react-router-dom';
+
 const Main = () => {
+    const navigate  = useNavigate();
     // 검색바에서 Enter 클릭 시 캐릭터 정보 검색 호출
     const mapleSearchEvent = async (e) => {
         if(e.keyCode === 13){
@@ -18,7 +21,12 @@ const Main = () => {
             }
 
             const result = await apiCall("ID", prams);
-            console.log(result);
+            // 페이지 이동 및 값 전달
+            navigate("/result", {
+                state : {
+                    ocid: result.ocid
+                }
+            });
         }
     }
 

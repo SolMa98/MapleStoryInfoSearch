@@ -1,0 +1,33 @@
+.error-message {
+    background: black;
+    height: 100%;
+}
+
+.error-message span {
+    display: flex;
+    justify-content: center;
+    padding-top: 20%;
+    color : #ffffff;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.error-page-back-button {
+    background-image: url("../assets/image/common/maplestory-char-img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    border-radius: 35px;
+    cursor:pointer;
+    margin-top: 10px;
+}
+
+.error-page-back-button a {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    top:30%;
+    cursor:pointer;
+}
