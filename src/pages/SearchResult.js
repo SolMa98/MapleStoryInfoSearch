@@ -4,6 +4,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import "../styles/SearchResult.css";
 import apiCall from "../utils/apiUtils";
 import ability from "../components/ability/ability";
+import setEffect from "../components/setEffect/setEffect";
 
 const SearchResult = () => {
     const location = useLocation();
@@ -141,9 +142,7 @@ const SearchResult = () => {
             <div className="sidebar">
                 <h2>세트 효과</h2>
                 <ul className="set-effect-list">
-                    {effectSetInfo.set_effect.map((item, index) => (
-                        <li key={index}>{`${item?.set_name} ${item?.total_set_count}세트`}</li>
-                    ))}
+                    {setEffect(effectSetInfo)}
                 </ul>
                 {abilityInfo?.preset_no !== "" && (
                     ability(abilityInfo)
