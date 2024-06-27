@@ -1,0 +1,196 @@
+/* styles.css */
+
+/*html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial, sans-serif';
+}
+
+body {
+    background: #1e1e1e;
+    color: #fff;
+}*/
+
+.result-area {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.character-info {
+    background: #2b2b2b;
+    border-radius: 10px;
+    padding: 20px;
+    width: 800px;
+    height: 80%;
+    margin-right: 20px;
+}
+
+.character-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.character-avatar img {
+    background: white;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin-right: 20px;
+}
+
+/* START) 캐릭터 정보 텍스트 */
+.character-details {
+    flex-grow: 1;
+    padding-left: 5%;
+}
+
+.character-details h1 {
+    text-align: left;
+    color : white;
+}
+
+.character-details p {
+    text-align: left;
+    color : white;
+}
+/* END) 캐릭터 정보 텍스트 */
+
+.character-equipment {
+    margin-top: 20px;
+    color : white;
+}
+
+.character-equipment h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.equipment-item {
+    background: #3b3b3b;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    width: calc(33.333% - 10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.equipment-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.equipment-details {
+    margin-top: 10px;
+}
+
+.equipment-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.equipment-stats {
+    font-size: 0.875rem;
+    color: #aaa;
+}
+
+.sidebar {
+    width: 300px;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.set-effect-list {
+    background: #2b2b2b;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* START) 어빌리티 */
+.ability-title-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.ability-title-area h2{
+    margin: 0px;
+}
+
+.ability-title-area a{
+    border-radius: 5px;
+    background: #4f4f4f;
+    margin-left: 5px;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    cursor : pointer;
+}
+
+.ability-preset-checked {
+    background: #2b2b2b !important;
+}
+
+.ability-title-area a:hover{
+    background: #3f3f3f !important;
+}
+
+.ability-section {
+    background: #2b2b2b;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.ability-item {
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.ability-item-leg {
+    background: #A4C700;
+}
+.ability-item-uniq {
+    background: #E89C09;
+}
+.ability-item-epic {
+    background: #7F66D3;
+}
+.ability-item-rare {
+    background: #36B8D0;
+}
+
+/* END) 어빌리티 */
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #0070f3;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 50px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.sidebar {
+    width: 600px;
+    margin-left: 100px; /* Adjust margin as needed */
+}
