@@ -5,12 +5,15 @@ import "../styles/SearchResult.css";
 import apiCall from "../utils/apiUtils";
 import ability from "../components/ability/ability";
 import setEffect from "../components/setEffect/setEffect";
+import equipmentItem from "../components/equipment/equipmentItem";
 
 const SearchResult = () => {
     const location = useLocation();
     const navigate  = useNavigate();
-
     const [ocid, setOcid] = useState("");
+    const [defaultParams, setDefaultParams] = useState({
+        ocid : ""
+    });
     // 캐릭터 기본 정보
     const [basicInfo, setBasicInfo] = useState({
         character_class : "",
@@ -22,17 +25,19 @@ const SearchResult = () => {
         character_name : "",
         world_name : ""
     });
-
     // 캐릭터 능력치 정보
     const [statInfo, setStatInfo] = useState({
         final_stat : []
     });
-
+    // 캐릭터 장비 정보
+    const [equipmentInfo, setEquipmentInfo] = useState({
+        equipment : {},
+        android : {}
+    });
     // 장착 세트 효과 정보
     const [effectSetInfo,setEffectSetInfo] = useState({
         set_effect : []
     });
-
     // 어빌리티 정보
     const [abilityInfo, setAbilityInfo] = useState({
         ability_preset_1 : {},
@@ -45,11 +50,13 @@ const SearchResult = () => {
     const getCharacterInfo = async () => {
         let basicRes = await getBasicInfo();
         let statRes = await getStatInfo();
+        let equipmentRes = await getItemEquipment();
         let setEffectRes = await getSetEffectInfo();
         let abilityRes = await getAbilityInfo();
 
         setBasicInfo(basicRes);
         setStatInfo(statRes);
+        setEquipmentInfo(equipmentRes);
         setEffectSetInfo(setEffectRes);
         setAbilityInfo(abilityRes);
 
@@ -60,43 +67,48 @@ const SearchResult = () => {
 
     //캐릭터 기본 정보 가져오기
     async function getBasicInfo() {
-        let basicParams = {
-            ocid : ocid
-        }
-        const basicRes = await apiCall("CHARACTER_BASIC", basicParams);
+        const basicRes = await apiCall("CHARACTER_BASIC", defaultParams);
         return basicRes;
     }
 
     // 캐릭터 종합 능력치 가져오기
     async function getStatInfo() {
-        let statParams = {
-            ocid : ocid
-        }
-        const statRes = await apiCall("CHARACTER_STAT", statParams);
+        const statRes = await apiCall("CHARACTER_STAT", defaultParams);
         return statRes;
+    }
+
+    // 캐릭터 장착 장비 가져오기
+    async function getItemEquipment() {
+        const equipmentRes = await apiCall("CHARACTER_ITEM_EQUIPMENT", defaultParams);
+        const androidEquipmentRes = await apiCall("CHARACTER_ANDROID_EQUIPMENT", defaultParams);
+
+        let equipData = {
+            equipment : equipmentRes,
+            android : androidEquipmentRes
+        }
+
+        return equipData;
     }
 
     // 세트 효과 정보 가져오기
     async function getSetEffectInfo() {
-        let setEffectParams = {
-            ocid : ocid
-        }
-        const setEffectRes = await apiCall("CHARACTER_SET_EFFECT", setEffectParams);
+        const setEffectRes = await apiCall("CHARACTER_SET_EFFECT", defaultParams);
         return setEffectRes;
     }
 
     // 어빌리티 정보 가져오기
     async function getAbilityInfo() {
-        let abilityParams = {
-            ocid : ocid
-        }
-        const abilityRes = await apiCall("CHARACTER_ABILITY", abilityParams);
+        const abilityRes = await apiCall("CHARACTER_ABILITY", defaultParams);
         return abilityRes;
     }
 
     // 페이지 진입 시 이벤트
     useEffect(() => {
         if(location?.state?.ocid && location?.state?.ocid !== ""){
+            let params = {
+                ocid : location.state.ocid
+            }
+            setDefaultParams(params);
             setOcid(location.state.ocid);
         }else{
             // 비정상적인 방법으로 result 페이지 진입 시 메인 페이지로 이동
@@ -128,15 +140,7 @@ const SearchResult = () => {
 
                 <div className="character-equipment">
                     <h2>장비</h2>
-                    <ul className="equipment-list">
-                        <li className="equipment-item">
-                            <img src="" alt="" />
-                            <div className="equipment-details">
-                                <p className="equipment-name"></p>
-                                <p className="equipment-stats"></p>
-                            </div>
-                        </li>
-                    </ul>
+                    {equipmentItem(equipmentInfo)}
                 </div>
             </div>
             <div className="sidebar">

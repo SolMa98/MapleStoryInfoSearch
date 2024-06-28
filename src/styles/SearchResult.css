@@ -67,42 +67,6 @@ body {
     margin-bottom: 10px;
 }
 
-.equipment-list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.equipment-item {
-    background: #3b3b3b;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 5px;
-    width: calc(33.333% - 10px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.equipment-item img {
-    width: 50px;
-    height: 50px;
-}
-
-.equipment-details {
-    margin-top: 10px;
-}
-
-.equipment-name {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.equipment-stats {
-    font-size: 0.875rem;
-    color: #aaa;
-}
-
 .sidebar {
     width: 300px;
 }
@@ -135,7 +99,7 @@ body {
 }
 
 .ability-title-area h2{
-    margin: 0px;
+    margin: 0;
     position: relative;
     left: 40%;
 }
@@ -165,7 +129,7 @@ body {
 
 .ability-item {
     color: white;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     margin-top: 5px;
     border-radius: 5px;
 }
@@ -182,8 +146,43 @@ body {
 .ability-item-rare {
     background: #36B8D0;
 }
-
 /* END) 어빌리티 */
+
+/* START) 장비 아이템 */
+.equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.equipment-item {
+    background: #3b3b3b;
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.equipment-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.equipment-details {
+    margin-top: 10px;
+}
+
+.equipment-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.equipment-stats {
+    font-size: 0.875rem;
+    color: #aaa;
+}
+/* END) 장비 아이템 */
 
 .loader {
     border: 8px solid #f3f3f3;
