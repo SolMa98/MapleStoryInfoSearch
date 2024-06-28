@@ -1,6 +1,7 @@
 import React from "react";
 
 const equipmentItem = (data) => {
+    console.log(data);
     let equipViewData = [
         ["반지4", "", "모자", "", "엠블렘"],
         ["반지3", "펜던트2", "얼굴장식", "", "뱃지"],
@@ -24,6 +25,13 @@ const equipmentItem = (data) => {
             for (let viewItem of viewArray) {
                 let checkedItem = false;
                 for(let equipItem of preset){
+                   if(viewItem === "안드로이드"){
+                       checkedItem = true;
+                       itemHtml.push(<li className="equipment-item">
+                                        <img src={data.android.android_icon} alt={data.android.android_name} />
+                                     </li>);
+                       break;
+                   }
                    if(viewItem === equipItem?.item_equipment_slot){
                        checkedItem = true;
                        itemHtml.push(<li className="equipment-item">

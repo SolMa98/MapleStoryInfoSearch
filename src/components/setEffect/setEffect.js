@@ -2,6 +2,7 @@ import React from "react";
 
 const setEffect = (data) => {
     // 세트 효과 내림차순 정렬
+    console.log(data);
     let setEffectItemArray = data.set_effect.sort((a, b) => b?.total_set_count - a?.total_set_count)
 
     return (
