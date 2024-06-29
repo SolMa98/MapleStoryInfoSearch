@@ -146,6 +146,46 @@ body {
 /* END) 어빌리티 */
 
 /* START) 장비 아이템 */
+.equipment-title {
+    display: flex;
+    align-items: center;
+}
+
+.equipment-title h2{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    position: relative;
+    left: calc(50% - 24px);
+}
+
+.equipment-title div{
+    margin-left: auto;
+}
+
+.equipment-title a {
+    font-size: 12px;
+
+    color: black;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px 5px 2px 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.equipment-title a:hover {
+    color: white !important;
+    background: #423f40 !important;
+    border: 1px solid white !important;
+}
+
+.equipment-title-checked {
+    color: white !important;
+    border: 1px solid white !important;
+    background: transparent !important;
+}
+
 .equipment-list {
     display: flex;
     flex-wrap: wrap;
@@ -157,13 +197,20 @@ body {
 .equipment-item {
     background: #3b3b3b;
     border-radius: 5px;
+    border: 1px solid;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .equipment-item img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    object-fit: none;
 }
 
 .equipment-details {

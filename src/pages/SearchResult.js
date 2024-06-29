@@ -32,9 +32,11 @@ const SearchResult = () => {
     });
     // 캐릭터 장비 정보
     const [equipmentInfo, setEquipmentInfo] = useState({
-        equipment : {},
-        android : {}
+
     });
+    const [androidInfo, setAndroidInfo] = useState({
+
+    })
     // 장착 세트 효과 정보
     const [effectSetInfo,setEffectSetInfo] = useState({
         set_effect : []
@@ -49,34 +51,19 @@ const SearchResult = () => {
 
     // 캐릭터 정보 가져오기
     const getCharacterInfo = async () => {
-        /*let basicRes = await getBasicInfo();
+        let basicRes = await getBasicInfo();
         let statRes = await getStatInfo();
         let equipmentRes = await getItemEquipment();
+        let androidRes = await getAndroid();
         let setEffectRes = await getSetEffectInfo();
-        let abilityRes = await getAbilityInfo();*/
+        let abilityRes = await getAbilityInfo();
 
-        let error = {
-            error : {
-                "message" : "Please try again later",
-                "name" : "OPENAPI00007"
-            }
-        }
-
-        /*setBasicInfo(basicRes);
+        setBasicInfo(basicRes);
         setStatInfo(statRes);
         setEquipmentInfo(equipmentRes);
+        setAndroidInfo(androidRes);
         setEffectSetInfo(setEffectRes);
-        setAbilityInfo(abilityRes);*/
-
-        setBasicInfo(error);
-        setStatInfo(error);
-        setEquipmentInfo(error);
-        setEffectSetInfo(error);
-        setAbilityInfo(error);
-
-        /*if(statRes?.final_stat.length !== 0){
-            console.log(statRes.final_stat);
-        }*/
+        setAbilityInfo(abilityRes);
     }
 
     //캐릭터 기본 정보 가져오기
@@ -94,14 +81,13 @@ const SearchResult = () => {
     // 캐릭터 장착 장비 가져오기
     async function getItemEquipment() {
         const equipmentRes = await apiCall("CHARACTER_ITEM_EQUIPMENT", defaultParams);
+        return equipmentRes;
+    }
+
+    // 장착 안드로이드 정보 가져오기
+    async function getAndroid() {
         const androidEquipmentRes = await apiCall("CHARACTER_ANDROID_EQUIPMENT", defaultParams);
-
-        let equipData = {
-            equipment : equipmentRes,
-            android : androidEquipmentRes
-        }
-
-        return equipData;
+        return androidEquipmentRes;
     }
 
     // 세트 효과 정보 가져오기
@@ -141,11 +127,7 @@ const SearchResult = () => {
         <div className="result-area">
             <div className="character-info">
                 {character(basicInfo)}
-
-                <div className="character-equipment">
-                    <h2>장비</h2>
-                    {equipmentItem(equipmentInfo)}
-                </div>
+                {equipmentItem(equipmentInfo, androidInfo)}
             </div>
             <div className="sidebar">
                 <h2 className="set-title">세트 효과</h2>
