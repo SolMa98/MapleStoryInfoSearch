@@ -28,6 +28,24 @@ body {
     visibility: hidden
 }
 
+.api-error-img {
+    background-image: url("../assets/image/common/error-message.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    left: calc(50% - 75px);
+}
+
+.api-error {
+    background: white;
+    color : black;
+    padding : 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;

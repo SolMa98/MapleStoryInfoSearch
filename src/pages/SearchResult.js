@@ -6,6 +6,7 @@ import apiCall from "../utils/apiUtils";
 import ability from "../components/ability/ability";
 import setEffect from "../components/setEffect/setEffect";
 import equipmentItem from "../components/equipment/equipmentItem";
+import character from "../components/character/character";
 
 const SearchResult = () => {
     const location = useLocation();
@@ -48,17 +49,30 @@ const SearchResult = () => {
 
     // 캐릭터 정보 가져오기
     const getCharacterInfo = async () => {
-        let basicRes = await getBasicInfo();
+        /*let basicRes = await getBasicInfo();
         let statRes = await getStatInfo();
         let equipmentRes = await getItemEquipment();
         let setEffectRes = await getSetEffectInfo();
-        let abilityRes = await getAbilityInfo();
+        let abilityRes = await getAbilityInfo();*/
 
-        setBasicInfo(basicRes);
+        let error = {
+            error : {
+                "message" : "Please try again later",
+                "name" : "OPENAPI00007"
+            }
+        }
+
+        /*setBasicInfo(basicRes);
         setStatInfo(statRes);
         setEquipmentInfo(equipmentRes);
         setEffectSetInfo(setEffectRes);
-        setAbilityInfo(abilityRes);
+        setAbilityInfo(abilityRes);*/
+
+        setBasicInfo(error);
+        setStatInfo(error);
+        setEquipmentInfo(error);
+        setEffectSetInfo(error);
+        setAbilityInfo(error);
 
         /*if(statRes?.final_stat.length !== 0){
             console.log(statRes.final_stat);
@@ -126,17 +140,7 @@ const SearchResult = () => {
     return (
         <div className="result-area">
             <div className="character-info">
-                <div className="character-header">
-                    <div className="character-avatar">
-                        <img src={basicInfo?.character_image} alt="Character Avatar" />
-                    </div>
-                    <div className="character-details">
-                        <h1>{basicInfo?.character_name}</h1>
-                        <p>길드: {basicInfo?.character_guild_name}</p>
-                        <p>랭킹: 104,214위 (16,969위)</p>
-                        <p>전투력: 64,760,417</p>
-                    </div>
-                </div>
+                {character(basicInfo)}
 
                 <div className="character-equipment">
                     <h2>장비</h2>
@@ -144,10 +148,9 @@ const SearchResult = () => {
                 </div>
             </div>
             <div className="sidebar">
-                <h2>세트 효과</h2>
-                <ul className="set-effect-list">
-                    {setEffect(effectSetInfo)}
-                </ul>
+                <h2 className="set-title">세트 효과</h2>
+                {setEffect(effectSetInfo)}
+
                 {abilityInfo?.preset_no !== "" && (
                     ability(abilityInfo)
                 )}
