@@ -1,6 +1,7 @@
 import React from "react";
 import {ERROR_MESSAGE} from "../../constants/errorConstants";
 import { applyTransparency, getRandomString } from "../../utils/utilis";
+import equipmentItemView from "./equipmentItemView";
 
 const equipmentItem = (equipmentInfo, androidInfo) => {
     if("error" in equipmentInfo || "error" in androidInfo){
@@ -135,15 +136,20 @@ const equipmentItem = (equipmentInfo, androidInfo) => {
                     <h2>장비</h2>
                     <div>
                         <a className={equipmentInfo.preset_no === 1 ? 'equipment-title-checked' : ''} data-key="1"
-                            onClick={handleEquipmentPreset}>프리셋 1</a>
+                           onClick={handleEquipmentPreset}>프리셋 1</a>
                         <a className={equipmentInfo.preset_no === 2 ? 'equipment-title-checked' : ''} data-key="2"
-                            onClick={handleEquipmentPreset}>프리셋 2</a>
+                           onClick={handleEquipmentPreset}>프리셋 2</a>
                         <a className={equipmentInfo.preset_no === 3 ? 'equipment-title-checked' : ''} data-key="3"
-                            onClick={handleEquipmentPreset}>프리셋 3</a>
+                           onClick={handleEquipmentPreset}>프리셋 3</a>
                     </div>
                 </div>
-                <div>
-                    {equipmentHtml}
+                <div className={"equipment-item-area"}>
+                    <div>
+                        {equipmentHtml}
+                    </div>
+                    <div>
+                        {equipmentItemView()}
+                    </div>
                 </div>
             </div>
         );

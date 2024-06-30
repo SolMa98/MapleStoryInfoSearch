@@ -127,8 +127,9 @@ body {
 .ability-item {
     color: white;
     margin-bottom: 0;
-    margin-top: 5px;
+    margin-top: 3px;
     border-radius: 5px;
+    padding: 2px 0px 2px 0px;
 }
 
 .ability-item-leg {
@@ -194,6 +195,10 @@ body {
     margin: 0;
 }
 
+.equipment-item-area {
+    display: flex;
+}
+
 .equipment-item {
     background: #3b3b3b;
     border-radius: 5px;
@@ -225,6 +230,181 @@ body {
 .equipment-stats {
     font-size: 0.875rem;
     color: #aaa;
+}
+
+.equipment-view-box {
+    position: relative;
+    padding: 10px 0px 10px 0px;
+    width: 300px;
+    min-height: 180px;
+    background-color: #15181D;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+}
+
+.equipment-view-box > .equipment-star {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    place-content: center;
+    padding-bottom: 4px;
+}
+
+.equipment-view-box .equipment-item-title {
+    margin-top: 2px;
+}
+
+.equipment-view-box .equipment-item-title p{
+    margin: 0px;
+    line-height: 1.5;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+}
+
+.equipment-view-box .equipment-item-title p:nth-child(1) {
+    font-size: 15px;
+}
+
+.equipment-view-box .equipment-item-title p:nth-child(2) {
+    font-size: 12px;
+}
+
+.equipment-view-box .next-line {
+    margin: 8px 0px 0px;
+    flex-shrink: 0;
+    border-width: 0px 0px thin;
+    border-color: rgba(255, 255, 255, 0.12);
+    border-style: dashed;
+}
+
+.equipment-view-box .item-top {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: end;
+    padding: 8px 8px 8px 12px;
+}
+
+.equipment-view-box .item-top .item-img-space{
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    display: grid;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.equipment-view-box .item-top .item-img-space img{
+    image-rendering: pixelated;
+    position: relative;
+    left: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+}
+
+.equipment-view-box .item-top .equipment-level p{
+    font-size: 10px;
+    margin: 0px 0px 5px 5px;
+    text-align: left;
+    color: #ffcc00;
+}
+
+.equipment-view-box .item-top .equipment-level .equipment-level-limit{
+    display: flex;
+    margin: 0px;
+}
+
+.equipment-view-box .item-top .equipment-level .equipment-level-limit p{
+    margin : 0px 0px 0px 5px;
+    color: white;
+    font-size: 8px;
+}
+
+.equipment-view-box .equipment-job{
+    display: flex;
+    font-size: 9px;
+    justify-content: center;
+}
+
+.equipment-view-box .equipment-job p {
+    margin: 0px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    padding: 3px 8px 3px 8px;
+}
+
+.equipment-view-box .equipment-job p:first-child {
+    border-radius: 3px 0px 0px 3px;
+    padding: 3px 8px 3px 8px;
+    text-align: center;
+}
+
+.equipment-view-box .equipment-job p:last-child {
+    border-radius: 0px 3px 3px 0px;
+    border-right: 1px solid white;
+    padding: 3px 8px 3px 8px;
+}
+
+.equipment-view-box .equipment-item-details p {
+    margin: 1px 0px 0px 10px;
+    text-align: left;
+    font-size: 11px;
+}
+
+.equipment-view-box .equipment-item-details p:first-child {
+    margin: 8px 0px 0px 10px;
+}
+
+.equipment-view-box .equipment-item-details p .default-option{
+    color: white;
+}
+
+.equipment-view-box .equipment-item-details p .synthesis-option{
+    color: #66FFFF;
+}
+
+.equipment-view-box .equipment-item-details p .add-option{
+    color: #ccff00;
+}
+
+.equipment-view-box .equipment-item-details p .force-option{
+    color: #aaaaff;
+}
+
+.equipment-view-box .equipment-item-details p .star-force-option{
+    color: #ffcc00;
+}
+
+.equipment-view-box .equipment-item-details .leg-option {
+    display: flex;
+    color: #A4C700;
+}
+
+.equipment-view-box .equipment-item-details .uniq-option {
+    display: flex;
+    color: #E89C09;
+}
+
+.equipment-view-box .equipment-item-details .epic-option {
+    display: flex;
+    color: #7F66D3;
+}
+
+.equipment-view-box .equipment-item-details .rare-option {
+    display: flex;
+    color: #36B8D0;
+}
+
+.equipment-view-box .equipment-item-details .leg-option span,
+.equipment-view-box .equipment-item-details .uniq-option span,
+.equipment-view-box .equipment-item-details .epic-option span,
+.equipment-view-box .equipment-item-details .rare-option span{
+    margin-left: 3px;
 }
 /* END) 장비 아이템 */
 
