@@ -1,7 +1,7 @@
 import React from "react";
 import {ERROR_MESSAGE} from "../../constants/errorConstants";
 
-const setEffect = (data) => {
+const SetEffect = (data) => {
     if("error" in data){
         return (
             <ul className="set-effect-list">
@@ -23,4 +23,4 @@ const setEffect = (data) => {
     }
 }
 
-export default setEffect;
+export default SetEffect;

@@ -1,9 +1,14 @@
-import React from "react";
 import {ERROR_MESSAGE} from "../../constants/errorConstants";
 import { applyTransparency, getRandomString } from "../../utils/utilis";
-import equipmentItemView from "./equipmentItemView";
+import EquipmentItemView from "./EquipmentItemView";
+import {useState} from "react";
 
-const equipmentItem = (equipmentInfo, androidInfo) => {
+const EquipmentItem = (equipmentInfo, androidInfo) => {
+    let equipItemInfo = {};
+    const [equipSelectItem, setEquipSelectItem] = useState({
+        key : "",
+        data : {}
+    });
     if("error" in equipmentInfo || "error" in androidInfo){
         let errorType = "error" in equipmentInfo ? equipmentInfo.error.name : androidInfo.error.name;
 
@@ -46,11 +51,15 @@ const equipmentItem = (equipmentInfo, androidInfo) => {
                 for (let viewItem of viewArray) {
                     let checkedItem = false;
                     for(let equipItem of preset){
+                        let randomKey = getRandomString(10);
+
                         if(viewItem === "안드로이드"){
                             checkedItem = true;
-                            itemHtml.push(<li key={"equip-item-" + getRandomString(10)} className="equipment-item">
+                            itemHtml.push(<li key={"equip-item-" + randomKey} className="equipment-item" data-key={randomKey} onMouseMove={handleMouseMove}>
                                               <img src={androidInfo.android_icon} alt={androidInfo.android_name} />
                                           </li>);
+
+                            equipItemInfo[randomKey] = androidInfo;
                             break;
                         }
                         if(viewItem === equipItem?.item_equipment_slot){
@@ -73,11 +82,12 @@ const equipmentItem = (equipmentInfo, androidInfo) => {
                                 default:
                                     itemBorder = "#FFFFFF";
                             }
-
-                            itemHtml.push(<li key={"equip-item-" + getRandomString(10)} className="equipment-item"
+                            itemHtml.push(<li key={"equip-item-" + randomKey} className="equipment-item" data-key={randomKey} onMouseMove={handleMouseMove}
                                               style={{border: "1px solid " + itemBorder, backgroundColor: applyTransparency(itemBorder, 0.2)}}>
                                             <img src={equipItem.item_shape_icon} alt={equipItem.item_equipment_part} />
                                           </li>);
+
+                            equipItemInfo[randomKey] = equipItem;
                             break;
                         }
                     }
@@ -130,6 +140,37 @@ const equipmentItem = (equipmentInfo, androidInfo) => {
             }
         }
 
+        // 마우스를 아이템 위에 올려놓은 경우
+        function handleMouseMove(e) {
+            let equipParent = e.target.closest(".equipment-preset");
+            if(!equipParent.classList.contains("display-none")){
+                let selectItem = null;
+                if (e.target.classList.contains('equipment-item')) {
+                    selectItem = e.target;
+                }
+                if (!selectItem) {
+                    let parent = e.target.parentElement;
+                    while (parent) {
+                        if (parent.classList.contains('equipment-item')) {
+                            selectItem = parent;
+                            break;
+                        }
+                        parent = parent.parentElement;
+                    }
+                }
+
+                if (selectItem) {
+                    if(JSON.stringify(equipSelectItem.data) !== JSON.stringify(equipItemInfo[selectItem.getAttribute('data-key')])){
+                        let tempSelectItem = {
+                            key : selectItem.getAttribute('data-key'),
+                            data : equipItemInfo[selectItem.getAttribute('data-key')]
+                        }
+                        setEquipSelectItem(tempSelectItem);
+                    }
+                }
+            }
+        }
+
         return (
             <div className="character-equipment">
                 <div className={"equipment-title"}>
@@ -148,7 +189,7 @@ const equipmentItem = (equipmentInfo, androidInfo) => {
                         {equipmentHtml}
                     </div>
                     <div>
-                        {equipmentItemView()}
+                        {EquipmentItemView(equipSelectItem)}
                     </div>
                 </div>
             </div>
@@ -156,4 +197,4 @@ const equipmentItem = (equipmentInfo, androidInfo) => {
     }
 }
 
-export default equipmentItem;
+export default EquipmentItem;

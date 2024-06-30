@@ -3,10 +3,10 @@ import {useLocation, useNavigate} from 'react-router-dom';
 
 import "../styles/SearchResult.css";
 import apiCall from "../utils/apiUtils";
-import ability from "../components/ability/ability";
-import setEffect from "../components/setEffect/setEffect";
-import equipmentItem from "../components/equipment/equipmentItem";
-import character from "../components/character/character";
+import Ability from "../components/Ability/Ability";
+import SetEffect from "../components/SetEffect/SetEffect";
+import EquipmentItem from "../components/Equipment/EquipmentItem";
+import Character from "../components/Character/Character";
 
 const SearchResult = () => {
     const location = useLocation();
@@ -12144,15 +12144,15 @@ const SearchResult = () => {
     return (
         <div className="result-area">
             <div className="character-info">
-                {character(basicInfo)}
-                {equipmentItem(equipmentInfo, androidInfo)}
+                {Character(basicInfo)}
+                {EquipmentItem(equipmentInfo, androidInfo)}
             </div>
             <div className="sidebar">
                 <h2 className="set-title">세트 효과</h2>
-                {setEffect(effectSetInfo)}
+                {SetEffect(effectSetInfo)}
 
                 {abilityInfo?.preset_no !== "" && (
-                    ability(abilityInfo)
+                    Ability(abilityInfo)
                 )}
             </div>
         </div>

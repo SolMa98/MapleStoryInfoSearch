@@ -1,7 +1,7 @@
 import React from "react";
 import {ERROR_MESSAGE} from "../../constants/errorConstants";
 
-const ability = (data, number) => {
+const Ability = (data, number) => {
     if("error" in data){
         return (
             <div>
@@ -111,4 +111,4 @@ const ability = (data, number) => {
         );
     }
 }
-export default ability;
+export default Ability;

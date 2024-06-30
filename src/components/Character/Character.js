@@ -2,7 +2,7 @@ import React from "react";
 import {ERROR_MESSAGE} from "../../constants/errorConstants";
 import defaultAvatarImg from "../../assets/image/common/maplestory-default-avatar.png";
 
-const character = (data) => {
+const Character = (data) => {
     if("error" in data){
 
         return (
@@ -35,4 +35,4 @@ const character = (data) => {
     }
 }
 
-export default character;
+export default Character;

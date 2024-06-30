@@ -4,7 +4,7 @@ import React from "react";
 import {getRandomString} from "../../utils/utilis";
 
 // starforce가 존재하는 장비일 경우 화면에 별 출력
-const starForce = (force, maxForce) => {
+const StarForce = (force, maxForce) => {
     let starForce = [];
     let starForceInner = [];
     for(let i = 1; i <= maxForce ; i++){
@@ -42,4 +42,4 @@ const starForce = (force, maxForce) => {
     return starForce;
 }
 
-export default starForce;
+export default StarForce;

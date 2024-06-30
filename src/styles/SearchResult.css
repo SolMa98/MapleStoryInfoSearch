@@ -304,6 +304,8 @@ body {
     left: calc(50% - 25px);
     width: 50px;
     height: 50px;
+    object-fit: none;
+    scale: 1.5;
 }
 
 .equipment-view-box .item-top .equipment-level p{
@@ -359,6 +361,11 @@ body {
 .equipment-view-box .equipment-item-details p:first-child {
     margin: 8px 0px 0px 10px;
 }
+
+.equipment-view-box .equipment-item-details div > p:first-child {
+    margin: 0px 0px 0px 10px;
+}
+
 
 .equipment-view-box .equipment-item-details p .default-option{
     color: white;
