@@ -6,6 +6,7 @@ import {ITEM_OPTION} from "../../constants/itemConstants";
 import {getRandomString} from "../../utils/utilis";
 
 const EquipmentItemOption = (itemData) => {
+    console.log(itemData)
     const potentialGrade = {
         "" : 0,
         "레어" : 1,
@@ -17,12 +18,39 @@ const EquipmentItemOption = (itemData) => {
     let itemPotential = "";
     // 아이템 이름
     let itemViewName = "";
+    let itemViewSoulName = "";
     // 아이템 옵션
     let itemOptionHtml = [];
     // 아이템 잠재 옵션
     let potentialOptionHtml = [];
     // 아이템 에디셔널 잠재 옵션
     let additionalPotentialOptionHtml = [];
+    // 아이템 설명
+    let itemDescriptionHtml = [];
+    // 아이템 소울 장착 여부
+    let itemSoulHtml = []
+
+    function makeItemDescriptionHtml(description){
+        return (
+            <div key={getRandomString(10)} className={"item-description"}>
+                <hr className={"next-line"} />
+
+                <p>{description}</p>
+            </div>
+        )
+    }
+
+    // 기타 문구
+    if(itemData?.item_description){
+        itemDescriptionHtml.push(
+            makeItemDescriptionHtml(itemData?.item_description)
+        );
+    }
+    if(itemData?.android_description){
+        itemDescriptionHtml.push(
+            makeItemDescriptionHtml(itemData?.android_description)
+        );
+    }
 
     const compareGrades = (grade1, grade2) => {
         return potentialGrade[grade1] - potentialGrade[grade2];
@@ -45,6 +73,9 @@ const EquipmentItemOption = (itemData) => {
             itemViewName = itemData.item_name + " (+" + itemData.scroll_upgrade + ")";
         }else{
             itemViewName = itemData.item_name;
+        }
+        if(itemData?.soul_name){
+            itemViewSoulName = itemData?.soul_name.replace("소울 적용", "");
         }
 
         // 아이템 옵션 설정
@@ -141,27 +172,27 @@ const EquipmentItemOption = (itemData) => {
             switch (potentialGrade[optionLevel]) {
                 case 4:
                     optionClass = "leg-option";
-                    iconHtml.push(<img src={legIcon} alt="레전드리 아이콘" />);
+                    iconHtml.push(<img key={getRandomString(10)} src={legIcon} alt="레전드리 아이콘" />);
                     break;
                 case 3:
                     optionClass = "uniq-option";
-                    iconHtml.push(<img src={uniqIcon} alt="유니크 아이콘" />);
+                    iconHtml.push(<img key={getRandomString(10)} src={uniqIcon} alt="유니크 아이콘" />);
                     break;
                 case 2:
                     optionClass = "epic-option";
-                    iconHtml.push(<img src={epicIcon} alt="에픽 아이콘" />);
+                    iconHtml.push(<img key={getRandomString(10)} src={epicIcon} alt="에픽 아이콘" />);
                     break;
                 case 1:
                     optionClass = "rare-option";
-                    iconHtml.push(<img src={rareIcon} alt="레어 아이콘" />);
+                    iconHtml.push(<img key={getRandomString(10)} src={rareIcon} alt="레어 아이콘" />);
                     break;
             }
 
             return (
-                <div>
+                <div key={getRandomString(10)}>
                     <hr className={"next-line"} />
 
-                    <div className={"equipment-item-details"}>
+                    <div className={"equipment-item-details"} key={getRandomString(10)}>
                         <p className={optionClass}>
                             {iconHtml}
                             <span>{optionType}</span>
@@ -187,13 +218,26 @@ const EquipmentItemOption = (itemData) => {
                 generatePotentialOptionHtml(itemData, [legIcon, uniqIcon, epicIcon, rareIcon], "에디셔널 잠재옵션")
             )
         }
+
+        // 아이템 소울
+        if(itemData?.soul_name){
+            itemSoulHtml.push(
+                <div key={getRandomString(10)} className={"item-soul"}>
+                    <hr className={"next-line"} />
+
+                    <p>{itemData.soul_name}</p>
+                    <p>{itemData.soul_option}</p>
+                </div>
+            )
+        }
     }
 
     return (
         <div>
             <div className={"equipment-item-title"}>
-                <p>{itemViewName}</p>
-                {itemPotential !== "" ? <p>({itemPotential + " 아이템"})</p> : ""}
+                <p style={{fontSize: "15px", color: "#CCFF00"}}>{itemViewSoulName}</p>
+                <p style={{fontSize: "15px"}}>{itemViewName}</p>
+                {itemPotential !== "" ? <p style={{fontSize: "12px"}}>({itemPotential + " 아이템"})</p> : ""}
             </div>
             <hr className={"next-line"} />
             <div className={"item-top"}>
@@ -235,6 +279,8 @@ const EquipmentItemOption = (itemData) => {
             </div>
             {potentialOptionHtml}
             {additionalPotentialOptionHtml}
+            {itemDescriptionHtml}
+            {itemSoulHtml}
         </div>
     )
 }

@@ -20,7 +20,10 @@ const EquipmentItemView = (selectItem) => {
     }else{
         return (
             <div key={getRandomString(10)} className={"equipment-view-box"}>
-
+                <div className={"equipment-select-alert"}>
+                    <p>선택된 장비 아이템이 없습니다.</p>
+                    <p>장비 아이템을 선택해주세요.</p>
+                </div>
             </div>
         );
     }

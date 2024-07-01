@@ -103,9 +103,17 @@ const EquipmentItem = (equipmentInfo, androidInfo) => {
                     </ul>
                 )
             }
+
+            // 이벤트 발생 시 선택된 프리셋이 변경되는걸 방지
+            let equipSelectedPreset = document.getElementsByClassName("equipment-title-checked");
+            let selectPresetNum = equipmentInfo.preset_no;
+            if(equipSelectedPreset.length > 0){
+                selectPresetNum = equipSelectedPreset[0]?.dataset?.key * 1;
+            }
+
             equipmentHtml.push(
                 <div key={"equip-preset-" + getRandomString(10)}
-                     className={!(equipmentInfo.preset_no === presetNumber) ? 'equipment-preset display-none' : 'equipment-preset'}
+                     className={!(selectPresetNum === presetNumber) ? 'equipment-preset display-none' : 'equipment-preset'}
                      data-key={presetNumber}>
                     {itemListHtml}
                 </div>

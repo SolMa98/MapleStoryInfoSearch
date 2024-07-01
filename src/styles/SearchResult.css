@@ -21,8 +21,7 @@ body {
     background: #2b2b2b;
     border-radius: 10px;
     padding: 20px;
-    width: 800px;
-    height: 80%;
+    min-width: 650px;
     margin-right: 20px;
 }
 
@@ -49,6 +48,7 @@ body {
 .character-details h1 {
     text-align: left;
     color : white;
+    font-size: 25px;
 }
 
 .character-details p {
@@ -197,6 +197,8 @@ body {
 
 .equipment-item-area {
     display: flex;
+    justify-content: space-evenly;
+    min-height: 650px;
 }
 
 .equipment-item {
@@ -244,6 +246,23 @@ body {
     border: 1px solid white;
 }
 
+.equipment-view-box > .equipment-select-alert {
+    position: absolute;
+    top: calc(50% - 19px);
+    left: calc(50% - 98px);
+    font-weight: bold;
+}
+
+.equipment-view-box > .equipment-select-alert > p{
+    font-size: 14px;
+    margin: 3px 0 0 0;
+}
+
+.equipment-view-box > .equipment-select-alert > p:first-child{
+    font-size: 14px;
+    margin: 0 0 0 0;
+}
+
 .equipment-view-box > .equipment-star {
     width: 100%;
     display: flex;
@@ -262,15 +281,7 @@ body {
     line-height: 1.5;
     text-align: center;
     color: white;
-    font-weight: 500;
-}
-
-.equipment-view-box .equipment-item-title p:nth-child(1) {
-    font-size: 15px;
-}
-
-.equipment-view-box .equipment-item-title p:nth-child(2) {
-    font-size: 12px;
+    font-weight: bold;
 }
 
 .equipment-view-box .next-line {
@@ -413,6 +424,26 @@ body {
 .equipment-view-box .equipment-item-details .rare-option span{
     margin-left: 3px;
 }
+
+.equipment-view-box .item-description p {
+    margin: 8px 0px 0px 10px;
+    text-align: left;
+    font-size: 11px;
+    white-space: pre-line;
+}
+
+.equipment-view-box .item-soul p {
+    margin: 1px 0 0 10px;
+    text-align: left;
+    font-size: 11px;
+    white-space: pre-line;
+}
+
+.equipment-view-box .item-soul > *:nth-child(2) {
+    color: #FFF54D;
+    margin: 8px 0 0 10px;
+}
+
 /* END) 장비 아이템 */
 
 .loader {
