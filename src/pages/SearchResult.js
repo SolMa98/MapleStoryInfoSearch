@@ -76,38 +76,32 @@ const SearchResult = () => {
 
     //캐릭터 기본 정보 가져오기
     async function getBasicInfo() {
-        const basicResponse = await apiCall("CHARACTER_BASIC", defaultParams);
-        return basicResponse;
+        return await apiCall("CHARACTER_BASIC", defaultParams);
     }
 
     // 캐릭터 종합 능력치 가져오기
     async function getStatInfo() {
-        const statResponse = await apiCall("CHARACTER_STAT", defaultParams);
-        return statResponse;
+        return await apiCall("CHARACTER_STAT", defaultParams);
     }
 
     // 캐릭터 장착 장비 가져오기
     async function getItemEquipment() {
-        const equipmentResponse = await apiCall("CHARACTER_ITEM_EQUIPMENT", defaultParams);
-        return equipmentResponse;
+        return await apiCall("CHARACTER_ITEM_EQUIPMENT", defaultParams);
     }
 
     // 장착 안드로이드 정보 가져오기
     async function getAndroid() {
-        const androidEquipmentResponse = await apiCall("CHARACTER_ANDROID_EQUIPMENT", defaultParams);
-        return androidEquipmentResponse;
+        return await apiCall("CHARACTER_ANDROID_EQUIPMENT", defaultParams);
     }
 
     // 세트 효과 정보 가져오기
     async function getSetEffectInfo() {
-        const setEffectResponse = await apiCall("CHARACTER_SET_EFFECT", defaultParams);
-        return setEffectResponse;
+        return await apiCall("CHARACTER_SET_EFFECT", defaultParams);
     }
 
     // 어빌리티 정보 가져오기
     async function getAbilityInfo() {
-        const abilityResponse = await apiCall("CHARACTER_ABILITY", defaultParams);
-        return abilityResponse;
+        return await apiCall("CHARACTER_ABILITY", defaultParams);
     }
 
     // 페이지 진입 시 이벤트

@@ -79,6 +79,7 @@ body {
 .set-title-area {
     background: white;
     border-radius: 10px;
+    padding: 5px;
     color: black;
 }
 .set-title {
@@ -107,6 +108,7 @@ body {
     margin-bottom: 5px;
     background: white;
     border-radius: 10px;
+    padding: 5px;
     color: black;
 }
 .ability-title-area h2{
