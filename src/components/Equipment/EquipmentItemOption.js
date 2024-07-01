@@ -6,7 +6,6 @@ import {ITEM_OPTION} from "../../constants/itemConstants";
 import {getRandomString} from "../../utils/utilis";
 
 const EquipmentItemOption = (itemData) => {
-    console.log(itemData)
     const potentialGrade = {
         "" : 0,
         "레어" : 1,
@@ -17,7 +16,7 @@ const EquipmentItemOption = (itemData) => {
     // 아이템 등급
     let itemPotential = "";
     // 아이템 이름
-    let itemViewName = "";
+    let itemViewName;
     let itemViewSoulName = "";
     // 아이템 옵션
     let itemOptionHtml = [];

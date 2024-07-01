@@ -31,12 +31,20 @@ body {
     margin-bottom: 20px;
 }
 
-.character-avatar img {
+.character-avatar {
     background: white;
     border-radius: 50%;
     width: 250px;
     height: 250px;
     margin-right: 20px;
+    overflow: hidden;
+}
+
+.character-avatar img {
+    object-fit: contain;
+    width: 230px;
+    height: 230px;
+    padding: 10px;
 }
 
 /* START) 캐릭터 정보 텍스트 */
@@ -68,18 +76,22 @@ body {
 }
 
 /* START) 세트 효과 */
+.set-title-area {
+    background: white;
+    border-radius: 10px;
+    color: black;
+}
 .set-title {
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 5px;
 }
-
 .set-effect-list {
     background: #2b2b2b;
     border-radius: 10px;
     padding: 15px;
-    margin: 0px;
+    margin: 0;
+    font-weight: bold;
 }
-
 .set-effect-list li {
     list-style-type: none;
     color: white;
@@ -93,14 +105,15 @@ body {
     align-items: center;
     margin-top: 5px;
     margin-bottom: 5px;
+    background: white;
+    border-radius: 10px;
+    color: black;
 }
-
 .ability-title-area h2{
     margin: 0;
     position: relative;
     left: calc(50% - 48px);
 }
-
 .ability-title-area a{
     border-radius: 5px;
     background: #4f4f4f;
@@ -109,29 +122,24 @@ body {
     color: white;
     cursor : pointer;
 }
-
 .ability-preset-checked {
     background: #2b2b2b !important;
 }
-
 .ability-title-area a:hover{
     background: #3f3f3f !important;
 }
-
 .ability-section {
     background: #2b2b2b;
     border-radius: 10px;
     padding: 15px;
 }
-
 .ability-item {
     color: white;
     margin-bottom: 0;
     margin-top: 3px;
     border-radius: 5px;
-    padding: 2px 0px 2px 0px;
+    padding: 2px 0 2px 0;
 }
-
 .ability-item-leg {
     background: #A4C700;
 }
@@ -153,7 +161,7 @@ body {
 }
 
 .equipment-title h2{
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 5px;
     position: relative;
     left: calc(50% - 24px);
@@ -236,7 +244,7 @@ body {
 
 .equipment-view-box {
     position: relative;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0;
     width: 300px;
     min-height: 180px;
     background-color: #15181D;
@@ -277,7 +285,7 @@ body {
 }
 
 .equipment-view-box .equipment-item-title p{
-    margin: 0px;
+    margin: 0;
     line-height: 1.5;
     text-align: center;
     color: white;
@@ -285,9 +293,9 @@ body {
 }
 
 .equipment-view-box .next-line {
-    margin: 8px 0px 0px;
+    margin: 8px 0 0;
     flex-shrink: 0;
-    border-width: 0px 0px thin;
+    border-width: 0 0 thin;
     border-color: rgba(255, 255, 255, 0.12);
     border-style: dashed;
 }
@@ -321,18 +329,18 @@ body {
 
 .equipment-view-box .item-top .equipment-level p{
     font-size: 10px;
-    margin: 0px 0px 5px 5px;
+    margin: 0 0 5px 5px;
     text-align: left;
     color: #ffcc00;
 }
 
 .equipment-view-box .item-top .equipment-level .equipment-level-limit{
     display: flex;
-    margin: 0px;
+    margin: 0;
 }
 
 .equipment-view-box .item-top .equipment-level .equipment-level-limit p{
-    margin : 0px 0px 0px 5px;
+    margin : 0 0 0 5px;
     color: white;
     font-size: 8px;
 }
@@ -344,7 +352,7 @@ body {
 }
 
 .equipment-view-box .equipment-job p {
-    margin: 0px;
+    margin: 0;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     border-left: 1px solid white;
@@ -352,29 +360,29 @@ body {
 }
 
 .equipment-view-box .equipment-job p:first-child {
-    border-radius: 3px 0px 0px 3px;
+    border-radius: 3px 0 0 3px;
     padding: 3px 8px 3px 8px;
     text-align: center;
 }
 
 .equipment-view-box .equipment-job p:last-child {
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 0 3px 3px 0;
     border-right: 1px solid white;
     padding: 3px 8px 3px 8px;
 }
 
 .equipment-view-box .equipment-item-details p {
-    margin: 1px 0px 0px 10px;
+    margin: 1px 0 0 10px;
     text-align: left;
     font-size: 11px;
 }
 
 .equipment-view-box .equipment-item-details p:first-child {
-    margin: 8px 0px 0px 10px;
+    margin: 8px 0 0 10px;
 }
 
 .equipment-view-box .equipment-item-details div > p:first-child {
-    margin: 0px 0px 0px 10px;
+    margin: 0 0 0 10px;
 }
 
 
@@ -426,7 +434,7 @@ body {
 }
 
 .equipment-view-box .item-description p {
-    margin: 8px 0px 0px 10px;
+    margin: 8px 0 0 10px;
     text-align: left;
     font-size: 11px;
     white-space: pre-line;
@@ -461,6 +469,23 @@ body {
     100% { transform: rotate(360deg); }
 }
 .sidebar {
-    width: 600px;
-    margin-left: 100px; /* Adjust margin as needed */
+    min-width: 400px;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 800px) {
+    .result-area{
+        display: grid;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .character-info{
+        margin-right: 0;
+    }
+
+    .sidebar{
+        margin-top: 5px;
+        margin-left: 0;
+    }
 }
