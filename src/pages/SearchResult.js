@@ -128,7 +128,7 @@ const SearchResult = () => {
     return (
         <div className="result-area">
             <div className="character-info">
-                {Character(basicInfo)}
+                {Character(basicInfo, statInfo)}
                 {EquipmentItem(equipmentInfo, androidInfo)}
             </div>
             <div className="sidebar">

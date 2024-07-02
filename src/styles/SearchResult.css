@@ -62,6 +62,13 @@ body {
 .character-details p {
     text-align: left;
     color : white;
+    font-size: 14px;
+}
+.character-world-icon{
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    margin-left: 3px;
 }
 /* END) 캐릭터 정보 텍스트 */
 
