@@ -1,114 +1,67 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {ERROR_MESSAGE} from "../../constants/errorConstants";
+import {GRADE_COLOR} from "../../constants/itemConstants";
 
-const Ability = (data, number) => {
+const Ability = ({data}) => {
+    const [abilityPreset, setAbilityPreset] = useState(data?.preset_no || 1);
+
+    // API 응답으로 preset_no가 갱신되면 기본 선택 프리셋도 동기화
+    useEffect(() => {
+        if(data?.preset_no){
+            setAbilityPreset(data.preset_no);
+        }
+    }, [data?.preset_no]);
+
     if("error" in data){
         return (
-            <div>
-                <div className={"ability-title-area"}>
-                    <h2>어빌리티</h2>
+            <div className="ability-card">
+                <div className="side-card-header">
+                    <h2 className="side-card-title">어빌리티</h2>
                 </div>
-                <div className="ability-section">
-                    <p className="api-error-img"></p>
-                    <p className="api-error">{ERROR_MESSAGE[data.error.name]}</p>
-                </div>
-            </div>
-        );
-    }else{
-        let abilityPresetArray = [];
-        abilityPresetArray.push(data.ability_preset_1);
-        abilityPresetArray.push(data.ability_preset_2);
-        abilityPresetArray.push(data.ability_preset_3);
-
-        let abilityHtml = [];
-        let abilityNumber = 1;
-
-        // 어빌리티 등급에 따라서 클래스 반환
-        function abilityRanked(data) {
-            let rank = "";
-
-            switch (data){
-                case "레전드리":
-                    rank = "ability-item-leg";
-                    break;
-                case "유니크":
-                    rank = "ability-item-uniq";
-                    break;
-                case "에픽":
-                    rank = "ability-item-epic";
-                    break;
-                case "레어":
-                    rank = "ability-item-rare";
-                    break;
-                default:
-                    rank = "레어";
-            }
-
-            return rank;
-        }
-
-        // 어빌리티 Html 생성
-        abilityPresetArray.forEach(item => {
-            let presetItemNumber = 0;
-            let abilities = item?.ability_info.map(presetItem => {
-                let abilityRank = abilityRanked(presetItem?.ability_grade);
-                presetItemNumber++;
-                return <p key={"ability_preset" + abilityNumber + "_item_" +  presetItemNumber} className={`ability-item ${abilityRank}`}>{presetItem?.ability_value}</p>;
-            });
-
-            let presetDisplay = "display-none";
-            if(data?.preset_no.toString() === abilityNumber.toString()){
-                presetDisplay = "";
-            }
-
-            abilityHtml.push(
-                <div key={`ability_item_${abilityNumber}`} className={`ability_item ability_${abilityNumber} ${presetDisplay}`}>
-                    {abilities}
-                </div>
-            );
-
-            abilityNumber++;
-        });
-
-        function handleAbilityPresetChange(e) {
-            let parent = e.target.parentNode;
-            let preset = document.getElementsByClassName("ability_item");
-
-            // 프리셋 선택 시 선택된 프리셋 조작
-            parent.childNodes.forEach(child => {
-                if (child.nodeType === 1) {
-                    child.classList.remove("ability-preset-checked");
-
-                    if(e.target.text === child.text){
-                        child.classList.add("ability-preset-checked");
-                    }
-                }
-            });
-
-            for(let presetItem of preset){
-                if(presetItem.classList.contains("ability_" + e.target.text)){
-                    presetItem.classList.remove("display-none");
-                }else{
-                    presetItem.classList.add("display-none");
-                }
-            }
-        }
-
-        return (
-            <div>
-                <div className={"ability-title-area"}>
-                    <h2>어빌리티</h2>
-                    <div style={{marginLeft:"auto"}}>
-                        <a className={data?.preset_no === 1 ? "ability-preset-checked" : ""} onClick={handleAbilityPresetChange}>1</a>
-                        <a className={data?.preset_no === 2 ? "ability-preset-checked" : ""} onClick={handleAbilityPresetChange}>2</a>
-                        <a className={data?.preset_no === 3 ? "ability-preset-checked" : ""} onClick={handleAbilityPresetChange}>3</a>
-                    </div>
-                </div>
-                <div className="ability-section">
-                    {abilityHtml}
-                </div>
+                <p className="api-error-img"></p>
+                <p className="api-error">{ERROR_MESSAGE[data.error.name]}</p>
             </div>
         );
     }
+
+    const abilityPresets = [data.ability_preset_1, data.ability_preset_2, data.ability_preset_3];
+    const currentAbilities = abilityPresets[abilityPreset - 1]?.ability_info || [];
+
+    return (
+        <div className="ability-card">
+            <div className="side-card-header">
+                <h2 className="side-card-title">어빌리티</h2>
+                <div className="side-preset-segment">
+                    {[1, 2, 3].map(presetNumber => (
+                        <button
+                            key={"ability-preset-" + presetNumber}
+                            className={"side-preset-btn" + (abilityPreset === presetNumber ? " is-active" : "")}
+                            onClick={() => setAbilityPreset(presetNumber)}
+                        >
+                            {presetNumber}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {currentAbilities.length === 0 ? (
+                <p className="side-card-empty">등록된 어빌리티가 없습니다.</p>
+            ) : (
+                <ul className="ability-list">
+                    {currentAbilities.map((ability, index) => {
+                        const gradeColor = GRADE_COLOR[ability?.ability_grade] || "#36B8D0";
+                        return (
+                            <li key={"ability-item-" + index} className="ability-row">
+                                <span className="ability-grade-bar" style={{backgroundColor: gradeColor}} />
+                                <span className="ability-text">{ability?.ability_value}</span>
+                                <span className="ability-grade-label" style={{color: gradeColor}}>{ability?.ability_grade}</span>
+                            </li>
+                        );
+                    })}
+                </ul>
+            )}
+        </div>
+    );
 }
+
 export default Ability;

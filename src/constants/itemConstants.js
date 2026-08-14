@@ -1,3 +1,11 @@
+// 아이템 등급색 (기존 코드 그대로)
+export const GRADE_COLOR = {
+    "레전드리": "#A4C700",
+    "유니크": "#E89C09",
+    "에픽": "#7F66D3",
+    "레어": "#36B8D0"
+}
+
 export const ITEM_OPTION = {
     "str" : "STR",
     "dex" : "DEX",

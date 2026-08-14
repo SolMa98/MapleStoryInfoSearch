@@ -19,9 +19,7 @@ p {
 
 .App {
     text-align: center;
-    background-image: url("../assets/image/main/maplestory-background3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: var(--bg);
     width: 100%;
     min-height : 100%;
 }

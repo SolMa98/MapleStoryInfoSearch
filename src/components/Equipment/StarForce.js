@@ -3,43 +3,39 @@ import starEmpty from "../../assets/image/common/star-empty.png";
 import React from "react";
 import {getRandomString} from "../../utils/utilis";
 
-// starforce가 존재하는 장비일 경우 화면에 별 출력
-const StarForce = (force, maxForce) => {
-    let starForce = [];
-    let starForceInner = [];
-    for(let i = 1; i <= maxForce ; i++){
-        let starBlankSpace = "";
-        if(i % 5 === 0){
-            starBlankSpace = "2";
-        }
+// starforce가 존재하는 장비일 경우 화면에 별 출력 (15개마다 줄바꿈, 5번째마다 여백)
+const StarForce = ({force, maxForce}) => {
+    const rows = [];
+    let currentRow = [];
 
-        if(i <= force){
-            starForceInner.push(
-                <img key={"star" + getRandomString(10)} src={starFull} style={starBlankSpace !== "" ? { marginRight: starBlankSpace + "%" } : {}} />
-            )
-        }else{
-            starForceInner.push(
-                <img key={"star" + getRandomString(10)} src={starEmpty} style={starBlankSpace !== "" ? { marginRight: starBlankSpace + "%" } : {}} />
-            )
-        }
+    for(let i = 1; i <= maxForce; i++){
+        currentRow.push(
+            <img
+                key={"star-" + i}
+                src={i <= force ? starFull : starEmpty}
+                alt=""
+                className={"equipment-star" + (i % 5 === 0 ? " equipment-star-gap" : "")}
+            />
+        );
 
-        if(i >= 15 && i % 15 === 0){
-            starForce.push(
-                <div key={"star" + getRandomString(10)}>
-                    {starForceInner}
-                </div>
-            );
-            starForceInner = [];
+        if(i % 15 === 0){
+            rows.push(currentRow);
+            currentRow = [];
         }
     }
+    if(currentRow.length > 0){
+        rows.push(currentRow);
+    }
 
-    starForce.push(
-        <div key={"star" + getRandomString(10)}>
-            {starForceInner}
+    return (
+        <div className="equipment-star-rows">
+            {rows.map(row => (
+                <div key={"star-row-" + getRandomString(6)} className="equipment-star-row">
+                    {row}
+                </div>
+            ))}
         </div>
     );
-
-    return starForce;
 }
 
 export default StarForce;

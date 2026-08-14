@@ -1,3 +1,28 @@
+/* 다크/라이트 테마 토큰 (기본값 = 다크) */
+:root {
+  --bg: #0D0F13;
+  --panel: #12151B;
+  --border: #1E232B;
+  --chip: #171B22;
+  --chip-soft: #1A1E26;
+  --text: #E8EAED;
+  --text-dim: #C7CCD4;
+  --field: #FFFFFF;
+  --field-border: #FFFFFF;
+}
+
+html[data-theme="light"] {
+  --bg: #F4F5F7;
+  --panel: #FFFFFF;
+  --border: #E5E7EB;
+  --chip: #F7F8FA;
+  --chip-soft: #F3F4F6;
+  --text: #12151A;
+  --text-dim: #4B5563;
+  --field: #FFFFFF;
+  --field-border: #E5E7EB;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +30,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
 }
 
 code {

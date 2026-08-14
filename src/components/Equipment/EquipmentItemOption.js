@@ -2,10 +2,10 @@ import legIcon from "../../assets/image/common/legendary_icon.png";
 import uniqIcon from "../../assets/image/common/unique_icon.png";
 import epicIcon from "../../assets/image/common/epic_icon.png";
 import rareIcon from "../../assets/image/common/rare_icon.png";
-import {ITEM_OPTION} from "../../constants/itemConstants";
+import {GRADE_COLOR, ITEM_OPTION} from "../../constants/itemConstants";
 import {getRandomString} from "../../utils/utilis";
 
-const EquipmentItemOption = (itemData) => {
+const EquipmentItemOption = ({itemData}) => {
     const potentialGrade = {
         "" : 0,
         "레어" : 1,
@@ -32,7 +32,7 @@ const EquipmentItemOption = (itemData) => {
     function makeItemDescriptionHtml(description){
         return (
             <div key={getRandomString(10)} className={"item-description"}>
-                <hr className={"next-line"} />
+                <hr className={"equipment-detail-divider"} />
 
                 <p>{description}</p>
             </div>
@@ -189,9 +189,9 @@ const EquipmentItemOption = (itemData) => {
 
             return (
                 <div key={getRandomString(10)}>
-                    <hr className={"next-line"} />
+                    <hr className={"equipment-detail-divider"} />
 
-                    <div className={"equipment-item-details"} key={getRandomString(10)}>
+                    <div className={"equipment-detail-potential"} style={{color: GRADE_COLOR[optionLevel] || "#FFFFFF"}} key={getRandomString(10)}>
                         <p className={optionClass}>
                             {iconHtml}
                             <span>{optionType}</span>
@@ -222,7 +222,7 @@ const EquipmentItemOption = (itemData) => {
         if(itemData?.soul_name){
             itemSoulHtml.push(
                 <div key={getRandomString(10)} className={"item-soul"}>
-                    <hr className={"next-line"} />
+                    <hr className={"equipment-detail-divider"} />
 
                     <p>{itemData.soul_name}</p>
                     <p>{itemData.soul_option}</p>
@@ -231,49 +231,46 @@ const EquipmentItemOption = (itemData) => {
         }
     }
 
+    const gradeColor = GRADE_COLOR[itemPotential] || "#FFFFFF";
+    const isAndroid = !!itemData?.android_nickname;
+
     return (
-        <div>
-            <div className={"equipment-item-title"}>
-                <p style={{fontSize: "15px", color: "#CCFF00"}}>{itemViewSoulName}</p>
-                <p style={{fontSize: "15px"}}>{itemViewName}</p>
-                {itemPotential !== "" ? <p style={{fontSize: "12px"}}>({itemPotential + " 아이템"})</p> : ""}
+        <div className={"equipment-detail-content"}>
+            <div className={"equipment-detail-title"}>
+                {itemViewSoulName && <p className={"equipment-detail-soul-name"}>{itemViewSoulName}</p>}
+                <p className={"equipment-detail-name"}>{itemViewName}</p>
+                {itemPotential !== "" && (
+                    <p className={"equipment-detail-grade"} style={{color: gradeColor}}>({itemPotential} 아이템)</p>
+                )}
             </div>
-            <hr className={"next-line"} />
-            <div className={"item-top"}>
-                <div className={"item-img-space"}>
+
+            <hr className={"equipment-detail-divider"} />
+
+            <div className={"equipment-detail-meta-row"}>
+                <div className={"equipment-detail-icon-box"}>
                     <img src={itemData?.android_icon ? itemData.android_icon : itemData.item_icon}
                          alt={itemData?.android_name ? itemData.android_name : itemData.item_name} />
                 </div>
-                <div className={"equipment-level"}>
-                    <p>{itemData?.item_base_option?.base_equipment_level ?
-                        "· REQ LEVEL : " + itemData?.item_base_option?.base_equipment_level :
-                        "· REQ LEVEL : " + 0}</p>
-                    <div>
-                        <div className={"equipment-level-limit"}>
-                            <p>· REQ STR : 000</p>
-                            <p>· REQ LUK : 000</p>
-                        </div>
-                        <div className={"equipment-level-limit"}>
-                            <p>· REQ DEX : 000</p>
-                            <p>· REQ INT : 000</p>
-                        </div>
-                    </div>
+                <div className={"equipment-detail-meta"}>
+                    <p className={"equipment-detail-meta-slot"}>
+                        {"장비 분류 : " + (isAndroid ? itemData.android_nickname : itemData.item_equipment_part)}
+                    </p>
+                    {!isAndroid && (
+                        <>
+                            <p className={"equipment-detail-meta-sub"}>
+                                {"착용 레벨 : " + (itemData?.item_base_option?.base_equipment_level || 0)}
+                            </p>
+                            {itemData?.starforce !== undefined && (
+                                <p className={"equipment-detail-meta-sub"}>{"스타포스 : " + itemData.starforce + "성"}</p>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
-            <div className={"equipment-job"}>
-                <p>초보자</p>
-                <p>전사</p>
-                <p>마법사</p>
-                <p>궁수</p>
-                <p>도적</p>
-                <p>해적</p>
-            </div>
 
-            <hr className={"next-line"} />
+            <hr className={"equipment-detail-divider"} />
 
-            <div className={"equipment-item-details"}>
-                <p>{itemData?.android_nickname ? "장비 분류: " + itemData.android_nickname:
-                    "장비 분류: " + itemData.item_equipment_part}</p>
+            <div className={"equipment-detail-options"}>
                 {itemOptionHtml}
             </div>
             {potentialOptionHtml}
